@@ -1,0 +1,27 @@
+@import '../../../styles/colors.scss';
+.radio {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.radio-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.radio-text {
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: var(--color-primary);
+}
+.separator {
+  border-bottom: 1px solid #e6e6e6;
+}
+.list-icon {
+  margin-right: 10px;
+}

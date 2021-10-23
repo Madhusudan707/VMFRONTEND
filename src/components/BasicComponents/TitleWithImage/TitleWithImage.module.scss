@@ -1,0 +1,54 @@
+@use 'sass:map';
+@import '../../../styles/colors.scss';
+
+.container {
+  margin-top: 0;
+  padding: 0.5rem;
+}
+.rowStyle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+.textStyle {
+  font-size: 2rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 6rem;
+  max-width: 80%;
+  color: var(--color-primary);
+}
+.subtext {
+  // needs to be changes later to $color-accent-3 from skill-exchage-ui
+  color: var(--color-primary);
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.imageStyle {
+  max-width: 8rem;
+  justify-content: center;
+  height: 6rem;
+}
+.iconStyle {
+  font-size: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+.iconBgStyle {
+  justify-content: center;
+  align-items: flex-end;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 2rem;
+  background-color: var(--color-primaryFade);
+}
+.smallIconStyle {
+  font-size: 2.4rem;
+  line-height: 6rem;
+  text-align: center;
+  width: 6rem;
+}

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.applicationName }}-configmap
+  namespace: {{ .Values.namespace }}
+  labels:
+    projectName: {{ .Values.applicationName }}
+    environment: {{ .Values.environment }}
+    type: configmap
+data:
+{{- if eq .Values.environment "production" -}}
+{{ .Files.Get "config-prod.yaml" | nindent 2}}
+{{- else if eq .Values.environment "development" -}}
+{{ .Files.Get "config-dev.yaml" | nindent 2}}
+{{- else -}}
+{{ .Files.Get "config-stage.yaml" | nindent 2}}
+{{- end -}}

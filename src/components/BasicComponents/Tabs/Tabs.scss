@@ -1,0 +1,32 @@
+@import '../../../styles/colors.scss';
+.container {
+  display: flex;
+  justify-content: left;
+  z-index: 1;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  padding: 0;
+}
+
+.container-items {
+  // padding-left: 30px;
+  width: 50%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.selected {
+  color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+}
+.unselected {
+  color: gray;
+}
+.tabs-content {
+  height: 550px;
+  overflow-y: scroll;
+}

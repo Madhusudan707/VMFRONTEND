@@ -1,0 +1,63 @@
+# Default values for demochart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+applicationName: CI_PROJECT_PATH_SLUG
+environment: CI_ENVIRONMENT_SLUG
+imagePullSecrets: gitlab-registry-vm-fe
+namespace: development
+
+deploy:
+  replicaCount: 1
+  strategy: RollingUpdate
+  maxUnavail: 0
+  maxSurge: 25%
+  configmapPath: "/"
+  terminationGracePeriodSeconds: "60"
+  healthCheck:
+    path: "/"
+    liveFailThreshold: "2"
+    liveSuccThreshold: "1"
+    readFailThreshold: "2"
+    readSuccThreshold: "1"
+    delay: "30"
+    period: "15"
+    timeout: "3"
+
+image:
+  repository: CI_APPLICATION_REPOSITORY
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: CI_APPLICATION_TAG
+  containerport: 80
+
+service:
+  type: NodePort
+  port: 80
+
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 60
+  targetMemoryUtilizationPercentage: 60
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+
+  limits:
+    memory: 700Mi
+  requests:
+    memory: 600Mi
+
+lifecycle:
+  prestop:
+    command: '["/bin/sh", "-c", "sleep 30"]'
+
+ingress:
+  hostname: vm-app.dev.goodworker.in
+  groupName: "virtual-manager"
+  acmARN: "arn:aws:acm:ap-southeast-1:920069789447:certificate/339558c3-2422-475c-af3f-8752f0e8fbd8"

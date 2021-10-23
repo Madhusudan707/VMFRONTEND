@@ -1,0 +1,16 @@
+export { Number } from './Number/Number';
+export { HowItWorks } from '../DerviedCompoents/HowItWorks/HowItWorks';
+export { TypoGraphy } from './TypoGraphy/TypoGraphy';
+export { Input } from './Input/Input';
+export { Button } from './Button/Button';
+export { DropDown } from './DropDown/DropDown';
+export { Screen } from './Screen/Screen';
+export { Radio } from './Radio/Radio';
+export { MyCandidateCard } from './MyCandidateCard/MyCandidateCard';
+export { UserImg } from './UserImg/UserImg';
+export { Camera } from './Camera/Camera';
+export { Form } from './Form/Form';
+export { CandidateAlreadyExist } from '../DerviedCompoents/CandidateAlreadyExist/CandidateAlreadyExist';
+export { Modal } from './Modal/Modal';
+export { AutoComplete } from './AutoComplete/AutoComplete';
+export { SearchDropDown } from './AutoComplete/SearchDropDown';

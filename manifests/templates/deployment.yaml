@@ -1,0 +1,91 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.applicationName }}-deployment
+  namespace: {{ .Values.namespace }}
+  annotations:
+    app.gitlab.com/app: {{ .Values.applicationName }}
+    app.gitlab.com/env: {{ .Values.environment }}
+  labels:
+    projectName: {{ .Values.applicationName }}
+    environment: {{ .Values.environment }}
+    type: deployment
+spec:
+  replicas: {{ .Values.deploy.replicaCount }}
+  selector:
+    matchLabels:
+      projectName: {{ .Values.applicationName }}
+      environment: {{ .Values.environment }}
+      type: deployment
+  strategy:
+    type: {{ .Values.deploy.strategy }}
+    rollingUpdate:
+      maxUnavailable: {{ .Values.deploy.maxUnavail }}
+      maxSurge: {{ .Values.deploy.maxSurge }}
+  template:
+    metadata:
+      labels:
+        projectName: {{ .Values.applicationName }}
+        environment: {{ .Values.environment }}
+        type: deployment
+    spec:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: project
+                  operator: In
+                  values:
+                  - {{ .Values.applicationName }}
+                - key: env
+                  operator: In
+                  values:
+                  - {{ .Values.environment }}
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+            weight: 100
+      containers:
+        - name: {{ .Values.applicationName }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.applicationName }}-configmap
+            - secretRef:
+                name: {{ .Values.applicationName }}-secret
+          ports:
+            - name: http
+              containerPort: {{ .Values.image.containerport }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              port: {{ .Values.service.port }}
+              path: {{ .Values.deploy.healthCheck.path }}
+            failureThreshold: {{ .Values.deploy.healthCheck.liveFailThreshold }}
+            successThreshold: {{ .Values.deploy.healthCheck.liveSuccThreshold }}
+            initialDelaySeconds: {{ .Values.deploy.healthCheck.delay }}
+            periodSeconds: {{ .Values.deploy.healthCheck.period }}
+            timeoutSeconds: {{ .Values.deploy.healthCheck.timeout }}
+          readinessProbe:
+            httpGet:
+              port: {{ .Values.service.port }}
+              path: {{ .Values.deploy.healthCheck.path }}
+            failureThreshold: {{ .Values.deploy.healthCheck.readFailThreshold }}
+            initialDelaySeconds: {{ .Values.deploy.healthCheck.delay }}
+            periodSeconds: {{ .Values.deploy.healthCheck.period }}
+            timeoutSeconds: {{ .Values.deploy.healthCheck.timeout }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+        {{- if  .Values.lifecycle.prestop.command }}
+          lifecycle:
+            preStop:
+              exec:
+                command: {{ .Values.lifecycle.prestop.command }}
+        {{- end }}
+          terminationMessagePath: /termination-log
+          terminationMessagePolicy: File
+      terminationGracePeriodSeconds: {{ .Values.deploy.terminationGracePeriodSeconds }}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecrets }}

@@ -1,0 +1,125 @@
+@import './styles/colors.scss';
+
+// margin
+
+.mb-20 {
+  margin-bottom: 1.2rem;
+}
+
+.my-15 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.pb-10 {
+  padding-bottom: 10px;
+}
+
+.pb-20 {
+  padding-bottom: 20px;
+}
+
+.pl-10 {
+  padding-left: 10px;
+}
+
+// height
+.h-100 {
+  height: 100%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.w-10 {
+  width: 10%;
+}
+
+// fw
+.fw-300 {
+  font-weight: 300;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.fw-800 {
+  font-weight: 800;
+}
+
+.fw-900 {
+  font-weight: 900;
+}
+
+.background-success {
+  background-color: var(--color-success);
+  color: var(--color-white);
+}
+
+.background-dark {
+  background-color: var(--color-black);
+}
+
+.background-danger {
+  background-color: var(--color-red);
+  color: var(--color-white);
+}
+
+.error-text {
+  color: var(--color-red);
+}
+
+.txt-primary {
+  color: var(--color-primary);
+}
+
+.txt-red {
+  color: var(--color-darkRed);
+}
+
+.txt-fade {
+  color: var(--color-primaryFade2);
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.font-12px {
+  font-size: var(--size-font-12px);
+}
+
+.emoticon-icon-img {
+  width: 27px;
+  height: 27px;
+}
+
+.text-left {
+  text-align: left;
+}

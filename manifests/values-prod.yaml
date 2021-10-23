@@ -1,0 +1,65 @@
+# Default values for demochart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+applicationName: CI_PROJECT_PATH_SLUG
+environment: CI_ENVIRONMENT_SLUG
+imagePullSecrets: gitlab-registry
+namespace: production
+
+deploy:
+  replicaCount: 3
+  strategy: RollingUpdate
+  maxUnavail: 0
+  maxSurge: 25%
+  configmapPath: "/"
+  terminationGracePeriodSeconds: "60"
+  healthCheck:
+    path: "/"
+    liveFailThreshold: "2"
+    liveSuccThreshold: "1"
+    readFailThreshold: "2"
+    readSuccThreshold: "1"
+    delay: "15"
+    period: "10"
+    timeout: "2"
+
+image:
+  repository: CI_APPLICATION_REPOSITORY
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: CI_APPLICATION_TAG-prod
+  containerport: 80
+
+service:
+  type: NodePort
+  port: 80
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 50
+  targetMemoryUtilizationPercentage: 50
+
+resources:
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  limits:
+    cpu: 500m
+    memory: 2Gi
+  requests:
+    cpu: 400m
+    memory: 600Mi
+
+lifecycle:
+  prestop:
+    command: '["/bin/sh", "-c", "sleep 30"]'
+
+ingress:
+  hostname: vm.goodworker.in
+  groupName: "goodworker-skillexchange"
+  acmARN: "arn:aws:acm:ap-southeast-1:449199520222:certificate/acafa1e5-2d3d-4a03-8c3d-d097a26446be"
+  wafARN: "arn:aws:wafv2:ap-southeast-1:412866647334:regional/webacl/test-waf/1761b847-0d68-4a33-b281-19ba9a7af254"

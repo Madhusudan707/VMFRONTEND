@@ -1,0 +1,19 @@
+@import '../../../styles/colors.scss';
+
+.input-vm {
+  background-color: var(--color-primaryFade) !important;
+  padding: 15px 15px 15px 40px !important;
+  font-family: Poppins !important;
+  font-size: 1.6rem !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: 24px !important;
+  letter-spacing: 0px !important;
+  text-align: left !important;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+.autocomplete {
+  margin: 1.2rem 0;
+}

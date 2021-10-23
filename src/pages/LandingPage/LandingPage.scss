@@ -1,0 +1,27 @@
+.how-it-works-container {
+  border: 1px solid #eaeefa;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin: 30px 0 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.refer-container {
+  margin-top: 20px;
+}
+.logo-container {
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+.logo {
+  width: 100px;
+  height: 50px;
+}
+.landing-modal {
+  padding: 15px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px -3px 24px rgba(0, 0, 0, 0.09);
+}

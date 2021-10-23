@@ -1,0 +1,4 @@
+include:
+  - project: 'Goodworker/infra/ci-config'
+    ref: 'master'
+    file: '/vm-app/frontend.yml'

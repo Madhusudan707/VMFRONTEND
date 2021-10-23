@@ -1,0 +1,10 @@
+REACT_APP_API_ENDPOINT: 'https://vm.dev.goodworker.in/graphql'
+
+REACT_APP_HOTLIST_EMAIL_URL: 'https://employerpanel.s3.ap-southeast-1.amazonaws.com/hotlist-domains-list.csv'
+REACT_APP_FACEBOOK: 'https://www.facebook.com/GoodWorkerIndia'
+REACT_APP_TWITTER: 'https://twitter.com/_GoodWorker'
+REACT_APP_LINKEDIN: 'https://www.linkedin.com/company/good-worker/?viewAsMember=true'
+REACT_APP_INSTAGRAM: 'https://www.instagram.com/goodworkerind/'
+REACT_APP_PLAY_STORE: 'https://play.google.com/store/apps/details?id=com.pravasirojgar.app'
+REACT_APP_GOOGLE_IMAGE: 'https://uploads-ssl.webflow.com/5fb3782ace5676c46e40c6b3/60032409186095c6459b7412_google-play-badge%202.png'
+REACT_APP_BASE_URL: 'https://www.goodworker.in'

@@ -1,0 +1,106 @@
+@import '../../../styles/colors.scss';
+
+.modal {
+  display: none;
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+
+    background-color: rgba(0, 0, 0, 0);
+    // background-color: $color-background;
+  }
+
+  .modalBody {
+    width: 100%;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: var(--color-white);
+    overflow-y: scroll;
+  }
+
+  &.show {
+    display: block;
+    .overlay {
+      animation: fade_in_show 0.3s forwards;
+    }
+
+    .modalBody {
+      animation: slide_in 0.2s forwards;
+    }
+
+    .instantModalBody {
+      animation: slide_in 0s forwards;
+    }
+  }
+
+  &.hide {
+    .overlay {
+      animation: fade_in_hide 0.3s forwards;
+    }
+
+    .modalBody {
+      animation: slide_out 0.2s forwards;
+    }
+  }
+}
+
+.skipButton {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  mix-blend-mode: normal;
+  border-radius: 7px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--color-white);
+  padding: 8px 20px;
+  max-width: max-content;
+}
+
+@keyframes fade_in_show {
+  0% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  100% {
+    background-color: rgba(23, 44, 81, 0.95);
+  }
+}
+
+@keyframes fade_in_hide {
+  0% {
+    background-color: rgba(23, 44, 81, 0.95);
+  }
+  100% {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes slide_in {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide_out {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

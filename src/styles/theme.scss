@@ -1,0 +1,8 @@
+@import 'size';
+@import 'mixin';
+@import 'colors';
+
+:root {
+  @include variable('size', $sizes);
+  @include variable('color', $colors);
+}
